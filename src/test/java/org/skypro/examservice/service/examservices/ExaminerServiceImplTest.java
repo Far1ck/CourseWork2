@@ -30,6 +30,7 @@ public class ExaminerServiceImplTest {
         int amount = 3;
         Set<Question> questionSet = new HashSet<>();
         when(javaQuestionService.getAll()).thenReturn(questionSet);
+
         assertThrows(NoSoManyQuestionsException.class, () -> examinerServiceImpl.getJavaQuestions(amount));
         verify(javaQuestionService, times(1)).getAll();
     }
@@ -46,7 +47,9 @@ public class ExaminerServiceImplTest {
         questionSet.add(question3);
         when(javaQuestionService.getAll()).thenReturn(questionSet);
         when(javaQuestionService.getRandomQuestion()).thenReturn(question1, question2, question3);
+
         Collection<Question> result = examinerServiceImpl.getJavaQuestions(amount);
+
         assertEquals(amount, result.size());
         verify(javaQuestionService, times(1)).getAll();
         verify(javaQuestionService, atLeast(2)).getRandomQuestion();
@@ -59,7 +62,9 @@ public class ExaminerServiceImplTest {
         Question question2 = new Question("2 * 2", "4");
         Question question3 = new Question("10 / 2", "5");
         when(mathQuestionService.getRandomQuestion()).thenReturn(question1, question2, question3);
+
         Collection<Question> result = examinerServiceImpl.getMathQuestions(amount);
+
         assertEquals(amount, result.size());
         verify(mathQuestionService, atLeast(2)).getRandomQuestion();
     }
@@ -67,7 +72,9 @@ public class ExaminerServiceImplTest {
     @Test
     void getZeroMathQuestions_ReturnEmptyCollection() {
         int amount = 0;
+
         Collection<Question> result = examinerServiceImpl.getMathQuestions(amount);
+
         assertEquals(amount, result.size());
         verify(mathQuestionService, times(0)).getRandomQuestion();
     }

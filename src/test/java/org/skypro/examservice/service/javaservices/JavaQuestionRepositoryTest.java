@@ -20,7 +20,9 @@ public class JavaQuestionRepositoryTest {
     void addCorrectQuestionAndAnswerText_Success() {
         String question = "Question Text";
         String answer = "Question Answer";
+
         Question result = javaQuestionRepository.add(question, answer);
+
         assertEquals(question, result.getQuestion());
         assertEquals(answer, result.getAnswer());
         assertEquals(new Question(question, answer), result);
@@ -30,6 +32,7 @@ public class JavaQuestionRepositoryTest {
     void addIncorrectQuestionAndAnswerText_ExceptionIsThrown() {
         String question = "Question Text";
         String answer = "   ";
+
         assertThrows(QuestionIsEmptyException.class, () -> javaQuestionRepository.add(question, answer));
     }
 
@@ -38,7 +41,9 @@ public class JavaQuestionRepositoryTest {
         String questionText = "Question Text";
         String answer = "Question Answer";
         Question question = new Question(questionText, answer);
+
         Question result = javaQuestionRepository.add(question);
+
         assertEquals(questionText, result.getQuestion());
         assertEquals(answer, result.getAnswer());
         assertEquals(question, result);
@@ -49,6 +54,7 @@ public class JavaQuestionRepositoryTest {
         String questionText = "Question Text";
         String answer = "   ";
         Question question = new Question(questionText, answer);
+
         assertThrows(QuestionIsEmptyException.class, () -> javaQuestionRepository.add(question));
     }
 
@@ -57,7 +63,9 @@ public class JavaQuestionRepositoryTest {
         String questionText = "Question Text";
         String answer = "Question Answer";
         Question question = new Question(questionText, answer);
+
         Question result = javaQuestionRepository.remove(question);
+
         assertEquals(questionText, result.getQuestion());
         assertEquals(answer, result.getAnswer());
         assertEquals(question, result);
@@ -68,12 +76,14 @@ public class JavaQuestionRepositoryTest {
         String questionText = "Question Text";
         String answer = "   ";
         Question question = new Question(questionText, answer);
+
         assertThrows(QuestionIsEmptyException.class, () -> javaQuestionRepository.remove(question));
     }
 
     @Test
     void getAll_ReturnCollection() {
         Collection<Question> result = javaQuestionRepository.getAll();
+
         assertNotNull(result);
         assertEquals(0, result.size());
     }

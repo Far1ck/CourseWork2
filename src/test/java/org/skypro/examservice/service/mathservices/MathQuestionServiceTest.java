@@ -18,18 +18,21 @@ public class MathQuestionServiceTest {
     void addCorrectQuestionTextAndQuestionAnswer_ExceptionIsThrown() {
         String question = "QuestionText";
         String answer = "QuestionAnswer";
+
         assertThrows(MethodNotAllowedException.class, () -> mathQuestionService.add(question, answer));
     }
 
     @Test
     void addCorrectQuestion_ExceptionIsThrown() {
         Question question = new Question("QuestionText", "QuestionAnswer");
+
         assertThrows(MethodNotAllowedException.class, () -> mathQuestionService.add(question));
     }
 
     @Test
     void removeQuestion_ExceptionIsThrown() {
         Question question = new Question("QuestionText", "QuestionAnswer");
+
         assertThrows(MethodNotAllowedException.class, () -> mathQuestionService.remove(question));
     }
 
@@ -41,6 +44,7 @@ public class MathQuestionServiceTest {
     @Test
     void getRandomQuestion() {
         Question result = mathQuestionService.getRandomQuestion();
+
         assertNotNull(result);
         assertNotNull(result.getQuestion());
         assertNotNull(result.getAnswer());
