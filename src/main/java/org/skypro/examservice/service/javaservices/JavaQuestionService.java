@@ -11,7 +11,7 @@ import java.util.Random;
 
 @Service
 public class JavaQuestionService implements QuestionService {
-    Random random = new Random();
+    private Random random = new Random();
     private QuestionRepository javaQuestionRepository;
 
     public JavaQuestionService(JavaQuestionRepository javaQuestionRepository) {

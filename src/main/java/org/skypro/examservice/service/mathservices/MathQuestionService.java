@@ -10,7 +10,7 @@ import java.util.Random;
 
 @Service
 public class MathQuestionService implements QuestionService {
-    Random random = new Random();
+    private Random random = new Random();
 
     public Question add(String question, String answer) {
         throw new MethodNotAllowedException("Method Not Allowed");
